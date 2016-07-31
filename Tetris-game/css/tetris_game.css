@@ -1,0 +1,13 @@
+canvas {
+    border: 1px solid black;
+}
+
+#tetris-container {
+    position: relative;
+}
+
+#tetris-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+}

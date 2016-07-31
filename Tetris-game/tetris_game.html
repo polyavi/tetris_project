@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tetris game</title>
+        <meta charset="UTF-8">
+        <link href="css/tetris_game.css" rel="stylesheet">
+        <script src="js/tetris_game.js"></script>
+    </head>
+    <body>
+        <h1>TETRIS GAME</h1>
+        <div id="tetris-container">
+            <canvas id="tetris-canvas"></canvas>
+        </div>
+        <script>
+            window.onload = function() {
+                var game = createGame("#tetris-canvas");
+                game.start();
+            };
+        </script>
+    </body>
+</html>
