@@ -213,6 +213,8 @@ function createGame(tetrisSelector) {
                 break;
             }
             case 38: {//up: rotate clockwise
+                document.getElementById('rotateLeftRight').play();
+
                 var prevState = tetrisBlock.state;
                 tetrisBlock.state = (tetrisBlock.state + 1) % blockDirections;
                 if (!isValidBlockPosition()) {
@@ -221,6 +223,8 @@ function createGame(tetrisSelector) {
                 break;
             }
             case 40: {//down: rotate counter-clockwise
+                document.getElementById('rotateLeftRight').play();
+
                 var prevState = tetrisBlock.state;
                 tetrisBlock.state === 0 ? tetrisBlock.state = blockDirections - 1 :
                     tetrisBlock.state -= 1;
