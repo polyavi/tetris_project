@@ -235,6 +235,8 @@ function createGame(tetrisSelector) {
             }
             case 32://interval - position block to bottom
                 //TO DO: POSITION BLOCK TO BOTTOM
+                document.getElementById('hardDrop').play();
+
                 moveBlockDown();
                 break;
             default:
@@ -249,6 +251,8 @@ function createGame(tetrisSelector) {
             updateGameFieldWithBlock();
             gotToBottom = true;
         }
+        //sound for down
+        document.getElementById('fallDown').play();
     }
 
     function updateGameFieldWithBlock() {
@@ -292,9 +296,21 @@ function createGame(tetrisSelector) {
     document.body.addEventListener("keydown", respondToKeyDown);
     setInterval(moveBlockDown, speed);
 
+
+//sounds mute
+var audio = document.getElementById('originalTheme');
+
+document.getElementById('muteSound').addEventListener('click', function (e)
+{
+    e = e || window.event;
+    audio.muted = !audio.muted;
+    e.preventDefault();
+}, false);
+
     return {
         "start": function () {
             gameLoop();
+            
         }
     };
 }
