@@ -354,6 +354,31 @@ function createGame(tetrisSelector) {
         }
 
     }
+     function clearFullRows() {
+                 
+       var  vLen = startGameField.shape[0].length, //length of rows = 20
+            hLen = startGameField.shape.length,    // length of cols = 40
+            countRow=0,
+            h,
+            v,
+            zeroArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+        for (h = 0; h < hLen; h+=1) {
+
+
+            
+            for (v = 0; v < vLen; v+=1){
+                countRow += startGameField.shape[h][v];
+            }
+                if(countRow===20)               // check if all are 1
+            {
+                startGameField.shape.splice(h,1);  // remove row
+                startGameField.shape.unshift(zeroArray);  // add zeroArray at front
+            }  
+                countRow = 0;     
+        }
+                
+    }
 
     function gameLoop() {
 
@@ -369,7 +394,7 @@ function createGame(tetrisSelector) {
         ctxTetris.clearRect(0, 0, tetrisCanvas.clientWidth, tetrisCanvas.clientHeight);
         drawGameFieldBlocks(gameField);
         drawTetrisBlock(tetrisBlock, currentFieldPosition);
-
+        clearFullRows();
         window.requestAnimationFrame(gameLoop);
     }
 
