@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Tetris game</title>
-        <meta charset="UTF-8">
-        <link href="css/tetris_game.css" rel="stylesheet">
-        <script src="js/tetris_game.js"></script>
-    </head>
-    <body>
 
-        
-        <h1>TETRIS GAME</h1>
-<button id="muteSound" href="#"  style ="display:block;" >mute/unmute sound</button>
-         
-        <div id="tetris-container">
-            <canvas id="tetris-canvas"></canvas>
-        </div>
+<head>
+    <title>Tetris game</title>
+    <meta charset="UTF-8">
+    <link href="css/tetris_game.css" rel="stylesheet">
+    <script src="js/tetris_game.js"></script>
+</head>
 
-        //audio
+<body>
 
-        <audio id="originalTheme" src="sounds/TetrisLowerVolume.mp3"></audio>
-        <audio id="startSound" src="sounds/SFX_GameStart.ogg"></audio>
+
+    <h1>TETRIS GAME</h1>
+    <button id="muteSound" href="#" style="display:block;">mute/unmute sound</button>
+
+    <div id="tetris-container">
+        <canvas id="tetris-canvas"></canvas>
+    </div>
+    <audio id="originalTheme" src="sounds/TetrisLowerVolume.mp3"></audio>
+    <audio id="startSound" src="sounds/SFX_GameStart.ogg"></audio>
     <audio id="moveLeftRight" src="sounds/SFX_PieceMoveLR.ogg"></audio>
-     <audio id="rotateLeftRight" src="sounds/SFX_PieceRotateLR.ogg" ></audio>
-     <audio id="hardDrop" src="sounds/SFX_PieceHardDrop.ogg"></audio>
-     <audio id="fallDown" src="sounds/SFX_PieceFall.ogg"></audio>
-     <audio id="coolTetrisVoice" src="sounds/SFX_SpecialTetris.ogg"></audio>
-       
-      
-       
-        <script>
-            window.onload = function() {
-                var game = createGame("#tetris-canvas");
-                game.start();
-                //document.getElementById('startSound').play();
-                document.getElementById('coolTetrisVoice').play();
-                document.getElementById('originalTheme').play();
-            };
-        </script>
-    </body>
+    <audio id="rotateLeftRight" src="sounds/SFX_PieceRotateLR.ogg"></audio>
+    <audio id="hardDrop" src="sounds/SFX_PieceHardDrop.ogg"></audio>
+    <audio id="fallDown" src="sounds/SFX_PieceFall.ogg"></audio>
+    <audio id="coolTetrisVoice" src="sounds/SFX_SpecialTetris.ogg"></audio>
+
+
+
+    <script>
+        window.onload = function() {
+            var game = createGame("#tetris-canvas");
+            game.start();
+            //document.getElementById('startSound').play();
+            document.getElementById('coolTetrisVoice').play();
+            document.getElementById('originalTheme').play();
+        };
+    </script>
+</body>
+
 </html>
