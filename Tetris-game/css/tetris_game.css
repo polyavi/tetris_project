@@ -1,13 +1,6 @@
 canvas {
-    border: 1px solid black;
-}
-
-#tetris-container {
-    position: relative;
-}
-
-#tetris-canvas {
-    position: absolute;
-    left: 0;
-    top: 0;
+    border: 1px solid rgb(26, 29, 50);
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
