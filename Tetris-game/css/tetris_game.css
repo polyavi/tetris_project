@@ -21,6 +21,7 @@ canvas {
     background-image: url('../images/background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+	float: left;
 }
 #muteSound{
     -moz-box-shadow:inset 0px 1px 0px 0px #fff6af;
@@ -66,8 +67,11 @@ canvas {
     position:relative;
 	top:1px;
 }
+#side-container{
+	padding-left: 300px;
+}
 
-#result{
+#result, #lines{
 -moz-box-shadow:inset 0px 1px 0px 0px #f9eca0;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #f9eca0;
 	box-shadow:inset 0px 1px 0px 0px #f9eca0;
