@@ -3,7 +3,7 @@
 
 const startGameField = {
         "shape": [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -246,7 +246,8 @@ function createGame(tetrisSelector) {
             "top": enterFieldTop
         },
         speed = 1000,
-        gameField = startGameField;
+        gameField = startGameField,
+          counterPoints=0;
 
     function drawGameFieldBlocks(field) {
         for (var i = 0; i < field.shape.length; i += 1) {
@@ -431,7 +432,7 @@ function createGame(tetrisSelector) {
 
         var vLen = startGameField.shape[0].length, //length of rows = 20
             hLen = startGameField.shape.length, // length of cols = 40
-            countRow = 0,
+            countRow = 0,          
             h,
             v,
             zeroArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -447,8 +448,11 @@ function createGame(tetrisSelector) {
             {
                 startGameField.shape.splice(h, 1); // remove row
                 startGameField.shape.unshift(zeroArray); // add zeroArray at front
+                counterPoints+=1;
+            
             }
             countRow = 0;
+            document.getElementById('result').innerHTML=counterPoints*10;
         }
 
     }
