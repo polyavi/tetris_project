@@ -1,21 +1,25 @@
 body{
     font-family: monospace;
+	color: #1a3651;
+ 	background: #1D976C; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #1D976C , #93F9B9); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #1D976C , #93F9B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
-background: #1D976C; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #1D976C , #93F9B9); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #1D976C , #93F9B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        
-}
 #tetris-container{
-margin-left: 40%;
-margin-top: 100px;
+	margin-left: 40%;
+	margin-top: 100px;
 }
+
 h1{
-     margin-left: 65px;
+    margin-left: 55px;
+	font-size: 30px;
 }
+
 h2{
-     margin-left: 120px;
+     margin-left: 115px;
 }
+
 canvas {
     border: 1px solid rgb(26, 29, 50);
     background-image: url('../images/background.jpg');
@@ -23,6 +27,7 @@ canvas {
     background-size: cover;
 	float: left;
 }
+
 #muteSound{
     -moz-box-shadow:inset 0px 1px 0px 0px #fff6af;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #fff6af;
@@ -49,7 +54,6 @@ canvas {
 	text-shadow:0px 1px 0px #ffee66;
     margin-left: 65px;
     margin-bottom: 20px;
-
 }
 
 #muteSound:hover{
@@ -67,9 +71,11 @@ canvas {
     position:relative;
 	top:1px;
 }
+
 #side-container{
 	padding-left: 300px;
 }
+
 
 #result, #lines{
 -moz-box-shadow:inset 0px 1px 0px 0px #f9eca0;
@@ -95,5 +101,4 @@ canvas {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
     margin-left: 80px;
-
 }

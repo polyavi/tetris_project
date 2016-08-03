@@ -456,7 +456,6 @@ function createGame(tetrisSelector) {
                 startGameField.shape.unshift(zeroArray); // add zeroArray at front
                 counterPoints+=1;
                 lines +=1;
-               
             }
 
             countRow = 0;

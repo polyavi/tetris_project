@@ -10,21 +10,22 @@
 
 <body>
     <div id="tetris-container">
-    <h1>TETRIS GAME</h1>
-    <button id="muteSound" href="#" style="display:block;">mute/unmute</button>
+        <h1>TETRIS GAME</h1>
 
-        <div id=container>
+        <button id="muteSound" href="#" style="display:block;">mute/unmute</button>
+
+        <div id="main-container">
             <canvas id="tetris-canvas"></canvas>
             <div id="side-container">
                 <h2>RESULT</h2>
                 <div id="result">000</div>
-                <h2>Lines</h2>
+                <h2>LINES</h2>
                 <div id="lines">000</div>
             </div>
         </div>
 
-
     </div>
+
     </div>
     <audio id="originalTheme" src="sounds/TetrisLowerVolume.mp3"></audio>
     <audio id="startSound" src="sounds/SFX_GameStart.ogg"></audio>
@@ -34,9 +35,5 @@
     <audio id="fallDown" src="sounds/SFX_PieceFall.ogg"></audio>
     <audio id="coolTetrisVoice" src="sounds/SFX_SpecialTetris.ogg"></audio>
 
-   
-
-   
 </body>
-
 </html>
