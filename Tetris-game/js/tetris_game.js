@@ -1,6 +1,14 @@
 /* globals window document console */
 "use strict";
 
+  window.onload = function() {
+            var game = createGame("#tetris-canvas");
+            game.start();
+            document.getElementById('startSound').play();
+            document.getElementById('coolTetrisVoice').play();
+            //document.getElementById('originalTheme').play();
+        };
+
 const startGameField = {
         "shape": [
            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -449,10 +457,13 @@ function createGame(tetrisSelector) {
                 startGameField.shape.splice(h, 1); // remove row
                 startGameField.shape.unshift(zeroArray); // add zeroArray at front
                 counterPoints+=1;
-            
+               
             }
             countRow = 0;
             document.getElementById('result').innerHTML=counterPoints*10;
+            //restarting when 250 points reached
+            if(document.getElementById('result').innerHTML>=250){
+             refresh();}
         }
 
     }
@@ -496,4 +507,12 @@ function createGame(tetrisSelector) {
 
         }
     };
+}
+
+function refresh() {
+        //refreshing the page function
+
+    setTimeout(function () {
+        location.reload()
+    });
 }
