@@ -349,6 +349,21 @@ function createGame(tetrisSelector) {
         for (v = 0; v < vLen; v += 1) {
             hLen = currShape[v].length;
             for (h = 0; h < hLen; h += 1) {
+
+              //Check for game over (could also take it out in a separate function)
+                if (currentFieldPosition.top===1 &&
+                  gameField.shape[currentFieldPosition.top + v][currentFieldPosition.left + h] === 1) {
+
+                  if (confirm("Game Over!! Press OK to restart the game!")) {
+                            alert("Thanks for that!");
+                  } else {
+                            alert("Why did you press cancel? You should have confirmed cause the game will restart anyways :) !");
+                  }
+
+                    refresh();
+                }
+                //End of game-over piece
+
                 if (currShape[v][h] === 1 &&
                     gameField.shape[currentFieldPosition.top + v][currentFieldPosition.left + h] === 1) {
                     return false;
