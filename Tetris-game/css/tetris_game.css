@@ -30,13 +30,21 @@ h1 {
     text-shadow: 1px 1px rgb(255, 255, 255);
 }
 h2 {
-    margin-left: 115px;
+    text-align: center;
 }
 
 canvas {
     border: 2px solid rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0.40);
     float: left;
+}
+
+#next-canvas{
+    margin-left: 25px;
+    margin-bottom: 25px;
+    width: 220px;
+    height: 150px;
+    position: relative;
 }
 
 #muteSound {
