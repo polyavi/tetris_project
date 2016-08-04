@@ -49,8 +49,6 @@ const startGameField = {
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
@@ -99,7 +97,7 @@ const startGameField = {
                 [1, 1]
             ]
         ],
-        "color": "rgb(73, 90, 184)",
+        "color": "rgb(49, 95, 164)",
         "state": 0
     }, { //cube
         "shapes": [
@@ -120,7 +118,7 @@ const startGameField = {
                 [1, 1]
             ]
         ],
-        "color": "rgb(153, 28, 140)",
+        "color": "rgb(139, 28, 153)",
         "state": 0
     }, { //stretched cube #1 or s-shaped
         "shapes": [
@@ -143,7 +141,7 @@ const startGameField = {
                 [1, 1, 0]
             ]
         ],
-        "color": "rgb(215, 122, 24)",
+        "color": "rgb(244, 86, 39)",
         "state": 0
     }, { //stretched cube #2 or s-shaped
         "shapes": [
@@ -166,7 +164,7 @@ const startGameField = {
                 [0, 1, 1]
             ]
         ],
-        "color": "rgb(222, 231, 61)",
+        "color": "rgb(255, 199, 54)",
         "state": 0
     }, { //bulgarian Г-shaped #1
         "shapes": [
@@ -189,7 +187,7 @@ const startGameField = {
                 [1, 1, 1]
             ]
         ],
-        "color": "rgb(20, 232, 124)",
+        "color": "rgb(71, 134, 113)",
         "state": 0
     }, { //bulgarian Г-shaped inverted
         "shapes": [
@@ -212,7 +210,7 @@ const startGameField = {
                 [1, 0, 0]
             ]
         ],
-        "color": "rgb(204, 60, 134)",
+        "color": "rgb(252, 42, 121)",
         "state": 0
     }, { //I-shaped
         "shapes": [
@@ -235,7 +233,7 @@ const startGameField = {
                 [1, 1, 1, 1]
             ]
         ],
-        "color": "rgb(91, 187, 228)",
+        "color": "rgb(57, 193, 160)",
         "state": 0
     }];
 
@@ -274,7 +272,7 @@ function createGame(tetrisSelector) {
                         "top": i,
                         "size": buildBlockSize,
                         "color": field.color,
-                        "lineColor": "rgb(26, 29, 50)"
+                        "lineColor": "rgb(255, 255, 255)"
                     });
                 } else {
                     drawSingleBlock({
