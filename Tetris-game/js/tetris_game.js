@@ -483,6 +483,13 @@ function createGame(tetrisSelector) {
             document.getElementById('result').innerHTML=counterPoints*10;
             //restarting when 250 points reached
             if(document.getElementById('result').innerHTML>=250){
+
+              if (confirm("You win!! You reached 250 points! Press OK to restart the game!")) {
+                        alert("Thanks for that!");
+              } else {
+                        alert("Why did you press cancel? Press Ok next time :) :) !");
+              }
+
              refresh();}
 
             document.getElementById('lines').innerHTML=lines;
