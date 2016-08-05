@@ -76,7 +76,7 @@ const startGameField = {
                 [1, 0]
             ]
         ],
-        "color": "rgb(187, 35, 67)",
+        "color": "rgb(89, 204, 9)",
         "state": 0
     }, {
         "shapes": [
@@ -97,7 +97,7 @@ const startGameField = {
                 [1, 1]
             ]
         ],
-        "color": "rgb(49, 95, 164)",
+        "color": "rgb(58, 116, 204)",
         "state": 0
     }, { //cube
         "shapes": [
@@ -118,7 +118,7 @@ const startGameField = {
                 [1, 1]
             ]
         ],
-        "color": "rgb(139, 28, 153)",
+        "color": "rgb(196, 44, 227)",
         "state": 0
     }, { //stretched cube #1 or s-shaped
         "shapes": [
@@ -141,7 +141,7 @@ const startGameField = {
                 [1, 1, 0]
             ]
         ],
-        "color": "rgb(244, 86, 39)",
+        "color": "rgb(244, 81, 21)",
         "state": 0
     }, { //stretched cube #2 or s-shaped
         "shapes": [
@@ -164,7 +164,7 @@ const startGameField = {
                 [0, 1, 1]
             ]
         ],
-        "color": "rgb(255, 199, 54)",
+        "color": "rgb(255, 247, 54)",
         "state": 0
     }, { //bulgarian Г-shaped #1
         "shapes": [
@@ -187,7 +187,7 @@ const startGameField = {
                 [1, 1, 1]
             ]
         ],
-        "color": "rgb(71, 134, 113)",
+        "color": "rgb(22, 191, 135)",
         "state": 0
     }, { //bulgarian Г-shaped inverted
         "shapes": [
@@ -233,7 +233,25 @@ const startGameField = {
                 [1, 1, 1, 1]
             ]
         ],
-        "color": "rgb(57, 193, 160)",
+        "color": "rgb(34, 235, 144)",
+        "state": 0
+    }, { //blinking block
+        "shapes": [
+            [
+                [1]
+            ],
+            [
+                [1]
+            ],
+            [
+                [1]
+            ],
+            [
+                [1]
+            ]
+        ],
+        "color": "rgb(6, 166, 176)",
+        "blinkColor": "rgb(107, 229, 246)",
         "state": 0
     }];
 
@@ -269,6 +287,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         lines = 0,
         isPushedStart = false,
         isMuted = false,
+        isBlink = false,
         interval;
 
     function drawGameFieldBlocks(field, ctx) {
@@ -316,13 +335,36 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
             hLen = shape[v].length;
             for (h = 0; h < hLen; h += 1) {
                 if (shape[v][h] === 1) {
-                    drawSingleBlock({
+                    if(!pattern.blinkColor)
+                    {
+                        drawSingleBlock({
                         "left": position.left + h,
                         "top": position.top + v,
                         "size": buildBlockSize,
                         "color": pattern.color,
                         "lineColor": "rgb(255, 255, 255)"
                     }, ctx);
+                } else {
+                    if(!isBlink){
+                        drawSingleBlock({
+                        "left": position.left + h,
+                        "top": position.top + v,
+                        "size": buildBlockSize,
+                        "color": pattern.color,
+                        "lineColor": "rgb(255, 255, 255)"
+                    }, ctx);
+                    isBlink = true;
+                } else{
+                    drawSingleBlock({
+                    "left": position.left + h,
+                    "top": position.top + v,
+                    "size": buildBlockSize,
+                    "color": pattern.blinkColor,
+                    "lineColor": "rgb(255, 255, 255)"
+                }, ctx);
+                isBlink = false;
+                }
+                }
                 }
             }
         }
