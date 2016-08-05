@@ -264,7 +264,9 @@ function createGame(tetrisSelector, tetrisNextSelector) {
         speed = 1000,
         gameField = startGameField,
         counterPoints=0,
-        lines = 0;
+        lines = 0,
+        isPushedStart = false,
+        interval;
 
     function drawGameFieldBlocks(field) {
         for (var i = 0; i < field.shape.length; i += 1) {
@@ -455,7 +457,6 @@ function createGame(tetrisSelector, tetrisNextSelector) {
             case 32: //interval - position block to bottom
                 //TO DO: POSITION BLOCK TO BOTTOM
                 document.getElementById('hardDrop').play();
-
                 moveBlockDown();
                 break;
             default:
@@ -472,6 +473,13 @@ function createGame(tetrisSelector, tetrisNextSelector) {
         }
         //sound for down
         document.getElementById('fallDown').play();
+    }
+
+    function updateSpeed(){
+        moveBlockDown();
+        interval = setTimeout(updateSpeed, speed);
+        //console.log(lines);
+        //console.log(speed);
     }
 
     function updateGameFieldWithBlock() {
@@ -517,7 +525,7 @@ function createGame(tetrisSelector, tetrisNextSelector) {
 
             document.getElementById('result').innerHTML=counterPoints*10;
             //restarting when 250 points reached
-            if(document.getElementById('result').innerHTML>=250){
+            /*if(document.getElementById('result').innerHTML>=1000){
 
               if (confirm("You win!! You reached 250 points! Press OK to restart the game!")) {
                         alert("Thanks for that!");
@@ -525,7 +533,7 @@ function createGame(tetrisSelector, tetrisNextSelector) {
                         alert("Why did you press cancel? Press Ok next time :) :) !");
               }
 
-             refresh();}
+             refresh();}*/
 
             document.getElementById('lines').innerHTML=lines;
 
@@ -534,7 +542,7 @@ function createGame(tetrisSelector, tetrisNextSelector) {
     }
 
     function gameLoop() {
-
+        speed = 1000-lines*30;
         if (gotToBottom) {
             tetrisBlock = nextBlock;
             nextBlock = getRandomBlock();
@@ -560,13 +568,24 @@ function createGame(tetrisSelector, tetrisNextSelector) {
         
         clearFullRows();
         window.requestAnimationFrame(gameLoop);
+        //console.log(isPushedStart);
     }
 
     ctxTetris.canvas.width = fieldWidth * buildBlockSize;
     ctxTetris.canvas.height = fieldHeight * buildBlockSize;
     document.body.addEventListener("keydown", respondToKeyDown);
-    setInterval(moveBlockDown, speed);
+    
 
+
+    document.getElementById('start').addEventListener('click',function(){
+        if(isPushedStart===false){
+            setTimeout(updateSpeed, speed);
+            isPushedStart = true; //starting the game
+        }else{
+            clearTimeout(interval);
+            isPushedStart = false; // pausing the game
+        }
+    });
 
     //sounds mute
     var audio = document.getElementById('originalTheme');
