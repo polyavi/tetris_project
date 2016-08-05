@@ -392,6 +392,8 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                     if (!isValidBlockPosition()) {
                         currentFieldPosition.left += 1;
                     }
+                    ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
+                    drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
                     break;
                 }
             case 39:
@@ -401,6 +403,8 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                     if (!isValidBlockPosition()) {
                         currentFieldPosition.left -= 1;
                     }
+                    ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
+                    drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
                     break;
                 }
             case 38:
@@ -412,6 +416,8 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                     if (!isValidBlockPosition()) {
                         tetrisBlock.state = prevState;
                     }
+                    ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
+                    drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
                     break;
                 }
             case 40:
@@ -423,6 +429,8 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                     if (!isValidBlockPosition()) {
                         tetrisBlock.state = prevState;
                     }
+                    ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
+                    drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
                     break;
                 }
             case 32: //interval - position block to bottom
@@ -444,9 +452,14 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
             drawGameFieldBlocks(gameField, ctxField);
 
             gotToBottom = true;
+        } else {
+            ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
+            drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
         }
         //sound for down
         document.getElementById('fallDown').play();
+
+
     }
 
     function updateSpeed() {
@@ -518,7 +531,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     }
 
     function gameLoop() {
-        speed = 1000 - lines * 30;
+        speed = 500 - lines * 30;
         if (gotToBottom) {
             tetrisBlock = nextBlock;
             nextBlock = getRandomBlock();
@@ -535,9 +548,6 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
             "top": 2
         };
 
-        ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
-        drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
-
         ctxTetrisNext.clearRect(0, 0, tetrisNextCanvas.clientWidth, tetrisNextCanvas.clientHeight);
         drawTetrisBlock(nextBlock, nextFieldPosition, ctxTetrisNext);
 
@@ -551,14 +561,27 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     ctxBlocks.canvas.width = fieldWidth * buildBlockSize;
     ctxBlocks.canvas.height = fieldHeight * buildBlockSize;
 
+    ctxBlocks.font = "30px monospace";
+    ctxBlocks.fillStyle = "rgb(64, 118, 124)";
+    ctxBlocks.strokeStyle = "rgb(64, 118, 124)";
+    ctxBlocks.fillText("CLICK ",100,200);
+    ctxBlocks.strokeText("CLICK ",100,200);
+    ctxBlocks.fillText("'Start' BUTTON",30,250);
+    ctxBlocks.strokeText("'Start' BUTTON",30,250);
+    ctxBlocks.fillText("TO BEGIN GAME!",30,300);
+    ctxBlocks.strokeText("TO BEGIN GAME!",30,300);
     document.body.addEventListener("keydown", respondToKeyDown);
+
 
     document.getElementById('start').addEventListener('click', function() {
         if (isPushedStart === false) {
             setTimeout(updateSpeed, speed);
             isPushedStart = true; //starting the game
-            this.innerText="Pause";
+            this.innerText = "Pause";
             drawGameFieldBlocks(gameField, ctxField);
+
+            ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
+            drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
         } else {
             clearTimeout(interval);
             isPushedStart = false; // pausing the game
@@ -567,7 +590,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     });
 
     //sounds mute
-    var audio = document.getElementById('originalTheme');
+    var audio = document.getElementById('coolTetrisVoice');
 
     document.getElementById('muteSound').addEventListener('click', function(e) {
         e = e || window.event;
