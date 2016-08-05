@@ -47,7 +47,7 @@ canvas {
     position: relative;
 }
 
-#muteSound {
+#muteSound,#start{
     -moz-box-shadow: inset 0px 1px 0px 0px #fff6af;
     -webkit-box-shadow: inset 0px 1px 0px 0px #fff6af;
     box-shadow: inset 0px 1px 0px 0px #fff6af;
@@ -74,8 +74,12 @@ canvas {
     margin-left: 75px;
     margin-bottom: 20px;
 }
+#start{
+    margin-left: 103px;
+    margin-bottom: 10px;
+}
 
-#muteSound:hover {
+#muteSound:hover,#start:hover {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
     background: -moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
     background: -webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
