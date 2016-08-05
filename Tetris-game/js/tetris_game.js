@@ -268,6 +268,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         counterPoints = 0,
         lines = 0,
         isPushedStart = false,
+        isMuted = false,
         interval;
 
     function drawGameFieldBlocks(field, ctx) {
@@ -580,12 +581,21 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     //sounds mute
     var audio = document.getElementById('coolTetrisVoice');
 
-    document.getElementById('muteSound').addEventListener('click', function(e) {
-        e = e || window.event;
-        audio.muted = !audio.muted;
-        e.preventDefault();
-    }, false);
-
+    document.getElementById('muteSound').addEventListener('click', function() {
+        var audios = document.querySelectorAll('audio');
+        if (isMuted === false) {
+            isMuted = true; //starting the game
+            this.innerText = "Mute";
+            [].forEach.call(audios, function(audio) { audio.muted = true;
+            audio.pause();
+        });
+        } else {
+            isMuted = false;
+            this.innerText = "Unmute";
+            [].forEach.call(audios, function(audio) { audio.muted = false;
+        });
+        }
+    });
     return {
         "start": function() {
             gameLoop();
