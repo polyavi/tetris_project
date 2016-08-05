@@ -551,16 +551,18 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     ctxBlocks.canvas.width = fieldWidth * buildBlockSize;
     ctxBlocks.canvas.height = fieldHeight * buildBlockSize;
 
-    drawGameFieldBlocks(gameField, ctxField);
     document.body.addEventListener("keydown", respondToKeyDown);
 
     document.getElementById('start').addEventListener('click', function() {
         if (isPushedStart === false) {
             setTimeout(updateSpeed, speed);
             isPushedStart = true; //starting the game
+            this.innerText="Pause";
+            drawGameFieldBlocks(gameField, ctxField);
         } else {
             clearTimeout(interval);
             isPushedStart = false; // pausing the game
+            this.innerText = "Start";
         }
     });
 
