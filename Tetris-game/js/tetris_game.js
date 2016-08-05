@@ -421,23 +421,11 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                     break;
                 }
             case 40:
-                { //down: rotate counter-clockwise
-                    document.getElementById('rotateLeftRight').play();
-
-                    var prevState = tetrisBlock.state;
-                    tetrisBlock.state === 0 ? tetrisBlock.state = blockDirections - 1 : tetrisBlock.state -= 1;
-                    if (!isValidBlockPosition()) {
-                        tetrisBlock.state = prevState;
-                    }
-                    ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
-                    drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
-                    break;
-                }
-            case 32: //interval - position block to bottom
-                //TO DO: POSITION BLOCK TO BOTTOM
+                { //down: interval - position block to bottom
                 document.getElementById('hardDrop').play();
                 moveBlockDown();
                 break;
+            }
             default:
                 break;
         }

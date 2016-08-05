@@ -40,6 +40,11 @@ canvas {
 }
 #block-canvas{
     position: absolute;
+    z-index: 1000;
+
+}
+#field-canvas{
+    position: absolute;
 }
 #next-canvas{
     margin-left: 35px;
