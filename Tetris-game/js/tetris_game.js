@@ -537,7 +537,11 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                 startGameField.shape.unshift(zeroArray); // add zeroArray at front
                 counterPoints += 1;
                 lines += 1;
-                level +=1;
+
+                if(lines % 2 == 0){
+                    level +=1;
+                }
+
                 ctx.clearRect(0, 0, fieldCanvas.clientWidth, fieldCanvas.clientHeight);
                 drawGameFieldBlocks(gameField, ctx);
             }
