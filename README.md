@@ -30,7 +30,7 @@
 	
 ![](/Images/figures.png)
 
-- Start button - via Start button playes starts the game. During the game this button is transformed to "Pause" button, through witch the player could pouse the game at any time.
+- Start button - via Start button player starts the game. During the game this button is transformed to "Pause" button, through witch the player could pouse the game at any time.
 - Keys to move figures - moving the figures is accomplished by arrow keys
 - Points - at each cleaned line, player's points are increased
 - Level - at each cleaned line the speed of falling figures is increased and the level increases as well
