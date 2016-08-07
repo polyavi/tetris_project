@@ -24,6 +24,8 @@ h1, #logo {
 }
 #logo{
     border-left: 2px solid rgb(255, 255, 255);
+    width:60px;
+    height:60px;
 }
 h1 {
     font-size: 30px;
@@ -46,7 +48,7 @@ canvas {
 #field-canvas{
     position: absolute;
 }
-#next-canvas{
+#next-canvas {
     margin-left: 35px;
     margin-bottom: 25px;
     position: relative;
@@ -104,7 +106,7 @@ canvas {
     padding-left: 300px;
 }
 
-#result, #lines {
+#result, #level {
     -moz-box-shadow: inset 0px 1px 0px 0px #f9eca0;
     -webkit-box-shadow: inset 0px 1px 0px 0px #f9eca0;
     box-shadow: inset 0px 1px 0px 0px #f9eca0;

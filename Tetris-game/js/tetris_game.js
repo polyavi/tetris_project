@@ -285,13 +285,14 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         gameField = startGameField,
         counterPoints = 0,
         lines = 0,
+        level = 1,
         isPushedStart = false,
         isMuted = false,
         isBlink = false,
         interval;
 
     function drawGameFieldBlocks(field, ctx) {
-        console.log("drawing field");
+        //console.log("drawing field");
         for (var i = 0; i < field.shape.length; i += 1) {
             for (var j = 0; j < field.shape[0].length; j += 1) {
                 if (field.shape[i][j] === 1) {
@@ -519,7 +520,6 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     }
 
     function clearFullRows(ctx) {
-
         var vLen = startGameField.shape[0].length, //length of rows = 20
             hLen = startGameField.shape.length, // length of cols = 40
             countRow = 0,
@@ -537,6 +537,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                 startGameField.shape.unshift(zeroArray); // add zeroArray at front
                 counterPoints += 1;
                 lines += 1;
+                level +=1;
                 ctx.clearRect(0, 0, fieldCanvas.clientWidth, fieldCanvas.clientHeight);
                 drawGameFieldBlocks(gameField, ctx);
             }
@@ -544,6 +545,9 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
             countRow = 0;
 
             document.getElementById('result').innerHTML = counterPoints * 10;
+
+            document.getElementById('level').innerHTML = level;
+            
             //restarting when 250 points reached
             /*if(document.getElementById('result').innerHTML>=1000){
 
@@ -554,15 +558,13 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
               }
 
              refresh();}*/
-
-            document.getElementById('lines').innerHTML = lines;
-
         }
 
     }
 
     function gameLoop() {
         speed = 500 - lines * 30;
+
         if (gotToBottom) {
             tetrisBlock = nextBlock;
             nextBlock = getRandomBlock();
