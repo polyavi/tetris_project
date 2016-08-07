@@ -16,7 +16,8 @@
 
 ###Project desctiption:###
 
-- Game description - **Tetris Game** is classical tetris game implemented with JavaScript. 
+**Tetris Game** is classical tetris game implemented with JavaScript. 
+
 - Figures:
 	- I-blocks are useful for getting Tetris, that is competing four lines at once.
 	- O-blocks for filling large gaps.
