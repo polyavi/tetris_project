@@ -508,174 +508,189 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                     drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
                 }
             }
-    } else {
-        ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
-        drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
-    }
-    //sound for down
-    document.getElementById('fallDown').play();
-
-
-}
-
-function updateSpeed() {
-    moveBlockDown();
-    interval = setTimeout(updateSpeed, speed);
-    //console.log(lines);
-    //console.log(speed);
-}
-
-function updateGameFieldWithBlock() {
-    var currShape = tetrisBlock.shapes[tetrisBlock.state],
-        vLen = currShape.length,
-        hLen,
-        v,
-        h;
-
-    for (v = 0; v < vLen; v += 1) {
-        hLen = currShape[v].length;
-        for (h = 0; h < hLen; h += 1) {
-            if (currShape[v][h] === 1) {
-                gameField.shape[currentFieldPosition.top + v][currentFieldPosition.left + h] = 1;
-
-            }
+        } else {
+            ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
+            drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
         }
+        //sound for down
+        document.getElementById('fallDown').play();
+
+
     }
-}
 
-function clearFullRows(ctx) {
-    var vLen = startGameField.shape[0].length, //length of rows = 20
-        hLen = startGameField.shape.length, // length of cols = 40
-        countRow = 0,
-        h,
-        v,
-        zeroArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    function updateSpeed() {
+        moveBlockDown();
+        interval = setTimeout(updateSpeed, speed);
+        //console.log(lines);
+        //console.log(speed);
+    }
 
-    for (h = 0; h < hLen; h += 1) {
+    function updateGameFieldWithBlock() {
+        var currShape = tetrisBlock.shapes[tetrisBlock.state],
+            vLen = currShape.length,
+            hLen,
+            v,
+            h;
+
         for (v = 0; v < vLen; v += 1) {
-            countRow += startGameField.shape[h][v];
-        }
-        if (countRow === 20) // check if all are 1
-        {
-            startGameField.shape.splice(h, 1); // remove row
-            startGameField.shape.unshift(zeroArray); // add zeroArray at front
-            counterPoints += 1;
-            lines += 1;
+            hLen = currShape[v].length;
+            for (h = 0; h < hLen; h += 1) {
+                if (currShape[v][h] === 1) {
+                    gameField.shape[currentFieldPosition.top + v][currentFieldPosition.left + h] = 1;
 
-            if (lines % 2 == 0) {
-                level += 1;
+                }
+            }
+        }
+    }
+
+    function getRandomLine(){
+      var arr= [];
+      for (let i = 0; i < fieldWidth; i+=1)
+        arr.push(Math.round(Math.random()));
+      return arr;
+    }
+
+    function updateGameFieldWithLine() {
+      var line = getRandomLine();
+      gameField.shape.push(line);
+      gameField.shape.shift();
+    }
+
+    function clearFullRows(ctx) {
+        var vLen = startGameField.shape[0].length, //length of rows = 20
+            hLen = startGameField.shape.length, // length of cols = 40
+            countRow = 0,
+            h,
+            v,
+            zeroArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        for (h = 0; h < hLen; h += 1) {
+            for (v = 0; v < vLen; v += 1) {
+                countRow += startGameField.shape[h][v];
+            }
+            if (countRow === 20) // check if all are 1
+            {
+                startGameField.shape.splice(h, 1); // remove row
+                startGameField.shape.unshift(zeroArray); // add zeroArray at front
+                counterPoints += 1;
+                lines += 1;
+
+                if (lines % 5 == 0) {
+                    level += 1;
+                    updateGameFieldWithLine();
+                }
+
+                ctx.clearRect(0, 0, fieldCanvas.clientWidth, fieldCanvas.clientHeight);
+                drawGameFieldBlocks(gameField, ctx);
             }
 
-            ctx.clearRect(0, 0, fieldCanvas.clientWidth, fieldCanvas.clientHeight);
-            drawGameFieldBlocks(gameField, ctx);
+            countRow = 0;
+
+            document.getElementById('result').innerHTML = counterPoints * 10;
+
+            document.getElementById('level').innerHTML = level;
+
+            //restarting when 250 points reached
+            /*if(document.getElementById('result').innerHTML>=1000){
+
+              if (confirm("You win!! You reached 250 points! Press OK to restart the game!")) {
+                        alert("Thanks for that!");
+              } else {
+                        alert("Why did you press cancel? Press Ok next time :) :) !");
+              }
+
+             refresh();}*/
         }
 
-        countRow = 0;
-
-        document.getElementById('result').innerHTML = counterPoints * 10;
-
-        document.getElementById('level').innerHTML = level;
-
-        //restarting when 250 points reached
-        /*if(document.getElementById('result').innerHTML>=1000){
-
-          if (confirm("You win!! You reached 250 points! Press OK to restart the game!")) {
-                    alert("Thanks for that!");
-          } else {
-                    alert("Why did you press cancel? Press Ok next time :) :) !");
-          }
-
-         refresh();}*/
     }
 
-}
+    function gameLoop() {
+        speed = 500 - lines * 30;
 
-function gameLoop() {
-    speed = 500 - lines * 30;
+        if (gotToBottom) {
+            tetrisBlock = nextBlock;
+            nextBlock = getRandomBlock();
 
-    if (gotToBottom) {
-        tetrisBlock = nextBlock;
-        nextBlock = getRandomBlock();
+            currentFieldPosition = {
+                "left": enterFieldLeft,
+                "top": enterFieldTop
+            };
+            gotToBottom = false;
+        }
 
-        currentFieldPosition = {
-            "left": enterFieldLeft,
-            "top": enterFieldTop
+        var nextFieldPosition = {
+            "left": 5,
+            "top": 2
         };
-        gotToBottom = false;
+
+        ctxTetrisNext.clearRect(0, 0, tetrisNextCanvas.clientWidth, tetrisNextCanvas.clientHeight);
+        drawTetrisBlock(nextBlock, nextFieldPosition, ctxTetrisNext);
+
+        clearFullRows(ctxField);
+        window.requestAnimationFrame(gameLoop);
+        //console.log(isPushedStart);
     }
 
-    var nextFieldPosition = {
-        "left": 5,
-        "top": 2
+    ctxField.canvas.width = fieldWidth * buildBlockSize;
+    ctxField.canvas.height = fieldHeight * buildBlockSize;
+    ctxBlocks.canvas.width = fieldWidth * buildBlockSize;
+    ctxBlocks.canvas.height = fieldHeight * buildBlockSize;
+
+    ctxBlocks.font = "30px monospace";
+    ctxBlocks.fillStyle = "rgb(64, 118, 124)";
+    ctxBlocks.strokeStyle = "rgb(64, 118, 124)";
+    ctxBlocks.fillText("CLICK ", 100, 200);
+    ctxBlocks.strokeText("CLICK ", 100, 200);
+    ctxBlocks.fillText("'Start' BUTTON", 30, 250);
+    ctxBlocks.strokeText("'Start' BUTTON", 30, 250);
+    ctxBlocks.fillText("TO BEGIN GAME!", 30, 300);
+    ctxBlocks.strokeText("TO BEGIN GAME!", 30, 300);
+
+    document.body.addEventListener("keydown", respondToKeyDown);
+
+
+    document.getElementById('start').addEventListener('click', function() {
+        if (isPushedStart === false) {
+            setTimeout(updateSpeed, speed);
+            isPushedStart = true; //starting the game
+            this.innerText = "Pause";
+            drawGameFieldBlocks(gameField, ctxField);
+
+            ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
+            drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
+        } else {
+            clearTimeout(interval);
+            isPushedStart = false; // pausing the game
+            this.innerText = "Start";
+        }
+    });
+
+    //sounds mute
+    var audio = document.getElementById('coolTetrisVoice');
+
+    document.getElementById('muteSound').addEventListener('click', function() {
+        var audios = document.querySelectorAll('audio');
+        if (isMuted === false) {
+            isMuted = true; //starting the game
+            this.innerText = "Mute";
+            [].forEach.call(audios, function(audio) {
+                audio.muted = true;
+                audio.pause();
+            });
+        } else {
+            isMuted = false;
+            this.innerText = "Unmute";
+            [].forEach.call(audios, function(audio) {
+                audio.muted = false;
+            });
+        }
+    });
+    return {
+        "start": function() {
+            gameLoop();
+
+        }
     };
-
-    ctxTetrisNext.clearRect(0, 0, tetrisNextCanvas.clientWidth, tetrisNextCanvas.clientHeight);
-    drawTetrisBlock(nextBlock, nextFieldPosition, ctxTetrisNext);
-
-    clearFullRows(ctxField);
-    window.requestAnimationFrame(gameLoop);
-    //console.log(isPushedStart);
-}
-
-ctxField.canvas.width = fieldWidth * buildBlockSize;
-ctxField.canvas.height = fieldHeight * buildBlockSize;
-ctxBlocks.canvas.width = fieldWidth * buildBlockSize;
-ctxBlocks.canvas.height = fieldHeight * buildBlockSize;
-
-ctxBlocks.font = "30px monospace";
-ctxBlocks.fillStyle = "rgb(64, 118, 124)";
-ctxBlocks.strokeStyle = "rgb(64, 118, 124)";
-ctxBlocks.fillText("CLICK ", 100, 200);
-ctxBlocks.strokeText("CLICK ", 100, 200);
-ctxBlocks.fillText("'Start' BUTTON", 30, 250);
-ctxBlocks.strokeText("'Start' BUTTON", 30, 250);
-ctxBlocks.fillText("TO BEGIN GAME!", 30, 300);
-ctxBlocks.strokeText("TO BEGIN GAME!", 30, 300);
-document.body.addEventListener("keydown", respondToKeyDown);
-
-
-document.getElementById('start').addEventListener('click', function() {
-    if (isPushedStart === false) {
-        setTimeout(updateSpeed, speed);
-        isPushedStart = true; //starting the game
-        this.innerText = "Pause";
-        drawGameFieldBlocks(gameField, ctxField);
-
-        ctxBlocks.clearRect(0, 0, blockCanvas.clientWidth, blockCanvas.clientHeight);
-        drawTetrisBlock(tetrisBlock, currentFieldPosition, ctxBlocks);
-    } else {
-        clearTimeout(interval);
-        isPushedStart = false; // pausing the game
-        this.innerText = "Start";
-    }
-});
-
-//sounds mute
-var audio = document.getElementById('coolTetrisVoice');
-
-document.getElementById('muteSound').addEventListener('click', function() {
-    var audios = document.querySelectorAll('audio');
-    if (isMuted === false) {
-        isMuted = true; //starting the game
-        this.innerText = "Mute";
-        [].forEach.call(audios, function(audio) {
-            audio.muted = true;
-            audio.pause();
-        });
-    } else {
-        isMuted = false;
-        this.innerText = "Unmute";
-        [].forEach.call(audios, function(audio) {
-            audio.muted = false;
-        });
-    }
-});
-return {
-    "start": function() {
-        gameLoop();
-
-    }
-};
 }
 
 function refresh() {
