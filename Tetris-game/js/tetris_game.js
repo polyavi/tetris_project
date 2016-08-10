@@ -630,16 +630,23 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     ctxBlocks.canvas.width = fieldWidth * buildBlockSize;
     ctxBlocks.canvas.height = fieldHeight * buildBlockSize;
 
-    ctxBlocks.font = "30px monospace";
+    ctxBlocks.font = "18px monospace";
     ctxBlocks.fillStyle = "rgb(64, 118, 124)";
     ctxBlocks.strokeStyle = "rgb(64, 118, 124)";
-    ctxBlocks.fillText("CLICK ", 100, 200);
-    ctxBlocks.strokeText("CLICK ", 100, 200);
-    ctxBlocks.fillText("'Start' BUTTON", 30, 250);
-    ctxBlocks.strokeText("'Start' BUTTON", 30, 250);
-    ctxBlocks.fillText("TO BEGIN GAME!", 30, 300);
-    ctxBlocks.strokeText("TO BEGIN GAME!", 30, 300);
-
+    ctxBlocks.fillText("CLICK 'Start'", 80, 100);
+    ctxBlocks.strokeText("CLICK 'Start'", 80, 100);
+    ctxBlocks.fillText("BUTTON TO BEGIN GAME!", 50, 130);
+    ctxBlocks.strokeText("BUTTON TO BEGIN GAME!", 50, 130);
+    ctxBlocks.fillText("controls:", 30, 200);
+    ctxBlocks.strokeText("controls:", 30, 200);
+    ctxBlocks.fillText("up    - rotate block", 30, 230);
+    ctxBlocks.strokeText("up", 30, 230);
+    ctxBlocks.fillText("down  - speed up", 30, 260);
+    ctxBlocks.strokeText("down", 30, 260);
+    ctxBlocks.fillText("right - move to the right", 30, 290);
+    ctxBlocks.strokeText("right", 30, 290);
+    ctxBlocks.fillText("left  - move to the left", 30, 320);
+    ctxBlocks.strokeText("left", 30, 320);
     document.body.addEventListener("keydown", respondToKeyDown);
 
 
