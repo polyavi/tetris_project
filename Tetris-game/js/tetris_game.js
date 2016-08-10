@@ -1,9 +1,19 @@
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+// MIT license
+
 /* globals window document console */
 "use strict";
-
+window.requestAnimFrame = (function(callback) {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(callback) {
+            window.setTimeout(callback, 1000 / 60);
+        };
+})();
 window.onload = function() {
     var game = createGame("#field-canvas", "#block-canvas", "#next-canvas");
-    game.start();
+    //game.start();
     document.getElementById('startSound').play();
     document.getElementById('coolTetrisVoice').play();
     //document.getElementById('originalTheme').play();
@@ -290,7 +300,9 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         isMuted = false,
         isBlink = false,
         isNextFreePosition,
-        interval;
+        interval,
+        gameLoops,
+        isOver=false;
 
     function drawGameFieldBlocks(field, ctx) {
         //console.log("drawing field");
@@ -405,10 +417,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                 //Check for game over (could also take it out in a separate function)
                 if (position.top === 1 &&
                     gameField.shape[position.top + v][position.left + h] === 1) {
-
-                document.getElementById('game-over').style.visibility= "visible";
-
-                    refresh();
+                    isOver = true;
                 }
                 //End of game-over piece
 
@@ -510,6 +519,8 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         }
         //sound for down
         document.getElementById('fallDown').play();
+
+
     }
 
     function updateSpeed() {
@@ -621,8 +632,12 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         drawTetrisBlock(nextBlock, nextFieldPosition, ctxTetrisNext);
 
         clearFullRows(ctxField);
-        window.requestAnimationFrame(gameLoop);
-        //console.log(isPushedStart);
+        if(!isOver){
+            gameLoops = window.requestAnimationFrame(gameLoop);
+        }else{
+            document.getElementById("game-over").style.display = "block";
+        }
+        console.log(isOver);
     }
 
     ctxField.canvas.width = fieldWidth * buildBlockSize;
@@ -647,6 +662,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     ctxBlocks.strokeText("right", 30, 290);
     ctxBlocks.fillText("left  - move to the left", 30, 320);
     ctxBlocks.strokeText("left", 30, 320);
+
     document.body.addEventListener("keydown", respondToKeyDown);
 
 
@@ -686,20 +702,16 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
             });
         }
     });
-    return {
-        "start": function() {
-            gameLoop();
+    return gameLoop();
 
-        }
-    };
+
+
 }
 
 function refresh() {
     //refreshing the page function
-    //automatic restart in 5 seconds
 
     setTimeout(function() {
-        location.reload();
+        location.reload()
     },3000);
-
 }
