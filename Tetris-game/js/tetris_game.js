@@ -404,13 +404,9 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
 
                 //Check for game over (could also take it out in a separate function)
                 if (position.top === 1 &&
-                    gameField.shape[position.top + v][position.left + h] === 1) {
+                    gameField.shape[position.top + v][position.left + h] === 1) {                     
 
-                    if (confirm("Game Over!! Press OK to restart the game!")) {
-                        alert("Thanks for that!");
-                    } else {
-                        alert("Why did you press cancel? You should have confirmed cause the game will restart anyways :) !");
-                    }
+                document.getElementById('game-over').style.visibility= "visible";
 
                     refresh();
                 }
@@ -514,8 +510,6 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         }
         //sound for down
         document.getElementById('fallDown').play();
-
-
     }
 
     function updateSpeed() {
@@ -605,7 +599,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     }
 
     function gameLoop() {
-        speed = 500 - lines * 30;
+        speed = 800 - lines * 30;
 
         if (gotToBottom) {
             tetrisBlock = nextBlock;
@@ -695,8 +689,10 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
 
 function refresh() {
     //refreshing the page function
+    //automatic restart in 5 seconds
 
     setTimeout(function() {
-        location.reload()
-    });
+        location.reload();
+    },3000);
+
 }
