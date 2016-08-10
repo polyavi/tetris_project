@@ -599,7 +599,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     }
 
     function gameLoop() {
-        speed = 800 - lines * 30;
+        speed = 800 - lines * 10;
 
         if (gotToBottom) {
             tetrisBlock = nextBlock;
