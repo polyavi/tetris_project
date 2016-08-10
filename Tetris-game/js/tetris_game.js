@@ -404,7 +404,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
 
                 //Check for game over (could also take it out in a separate function)
                 if (position.top === 1 &&
-                    gameField.shape[position.top + v][position.left + h] === 1) {                     
+                    gameField.shape[position.top + v][position.left + h] === 1) {
 
                 document.getElementById('game-over').style.visibility= "visible";
 
@@ -666,14 +666,14 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         var audios = document.querySelectorAll('audio');
         if (isMuted === false) {
             isMuted = true; //starting the game
-            this.innerText = "Mute";
+            this.innerText = "Unmute";
             [].forEach.call(audios, function(audio) {
                 audio.muted = true;
                 audio.pause();
             });
         } else {
             isMuted = false;
-            this.innerText = "Unmute";
+            this.innerText = "Mute";
             [].forEach.call(audios, function(audio) {
                 audio.muted = false;
             });
