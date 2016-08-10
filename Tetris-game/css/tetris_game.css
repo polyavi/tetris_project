@@ -42,7 +42,7 @@ canvas {
 }
 #block-canvas{
     position: absolute;
-    z-index: 1000;
+    z-index: 5;
 
 }
 #field-canvas{
@@ -82,7 +82,7 @@ canvas {
     margin-bottom: 20px;
 }
 #start{
-    margin-left: 120px;
+    margin-left: 65px;
     margin-bottom: 10px;
 }
 
@@ -131,3 +131,18 @@ canvas {
     text-shadow: 0px 1px 0px #ffffff;
     margin-left: 80px;
 }
+#game-over{
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    background-color: #666666;
+    z-index: 10;
+    display: none;
+    margin:0 auto;
+}
+#restart{
+    display: none;
+}
+
