@@ -72,6 +72,7 @@
     <audio id="hardDrop" src="sounds/SFX_PieceHardDrop.ogg"></audio>
     <audio id="fallDown" src="sounds/SFX_PieceFall.ogg"></audio>
     <audio id="coolTetrisVoice" src="sounds/SFX_SpecialTetris.ogg"></audio>
+    <audio id="levelUpSound" src="sounds/SFX_LevelUp.ogg"></audio>
 </body>
 </html>
 <script>
