@@ -306,8 +306,8 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
 
     function drawGameFieldBlocks(field, ctx) {
         //console.log("drawing field");
-        for (var i = 0; i < field.shape.length; i += 1) {
-            for (var j = 0; j < field.shape[0].length; j += 1) {
+        for (let i = 0; i < field.shape.length; i += 1) {
+            for (let j = 0; j < field.shape[0].length; j += 1) {
                 if (field.shape[i][j] === 1) {
                     drawSingleBlock({
                         "left": j,
@@ -341,13 +341,11 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     function drawTetrisBlock(pattern, position, ctx) {
         var shape = pattern.shapes[pattern.state],
             vLen = shape.length,
-            hLen,
-            v,
-            h;
+            hLen;
 
-        for (v = 0; v < vLen; v += 1) {
+        for (let v = 0; v < vLen; v += 1) {
             hLen = shape[v].length;
-            for (h = 0; h < hLen; h += 1) {
+            for (let h = 0; h < hLen; h += 1) {
                 if (shape[v][h] === 1) {
                     if (!pattern.blinkColor) {
                         drawSingleBlock({
@@ -392,9 +390,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     function isValidBlockPosition(position) {
         var currShape = tetrisBlock.shapes[tetrisBlock.state],
             vLen = currShape.length,
-            hLen,
-            v,
-            h;
+            hLen;
 
         //Check for LEFT boundary
         if (position.left < 0) {
@@ -410,9 +406,9 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         }
 
         //Check for COLLISION inside the field
-        for (v = 0; v < vLen; v += 1) {
+        for (let v = 0; v < vLen; v += 1) {
             hLen = currShape[v].length;
-            for (h = 0; h < hLen; h += 1) {
+            for (let h = 0; h < hLen; h += 1) {
 
                 //Check for game over (could also take it out in a separate function)
                 if (position.top === 1 &&
@@ -533,13 +529,11 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
     function updateGameFieldWithBlock() {
         var currShape = tetrisBlock.shapes[tetrisBlock.state],
             vLen = currShape.length,
-            hLen,
-            v,
-            h;
+            hLen;
 
-        for (v = 0; v < vLen; v += 1) {
+        for (let v = 0; v < vLen; v += 1) {
             hLen = currShape[v].length;
-            for (h = 0; h < hLen; h += 1) {
+            for (let h = 0; h < hLen; h += 1) {
                 if (currShape[v][h] === 1) {
                     gameField.shape[currentFieldPosition.top + v][currentFieldPosition.left + h] = 1;
 
@@ -565,12 +559,10 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         var vLen = startGameField.shape[0].length, //length of rows = 20
             hLen = startGameField.shape.length, // length of cols = 40
             countRow = 0,
-            h,
-            v,
             zeroArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-        for (h = 0; h < hLen; h += 1) {
-            for (v = 0; v < vLen; v += 1) {
+        for (let h = 0; h < hLen; h += 1) {
+            for (let v = 0; v < vLen; v += 1) {
                 countRow += startGameField.shape[h][v];
             }
             if (countRow === 20) // check if all are 1
@@ -705,9 +697,6 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
         }
     });
     return gameLoop();
-
-
-
 }
 
 function refresh() {

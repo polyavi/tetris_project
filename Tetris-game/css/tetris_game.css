@@ -35,7 +35,6 @@ h2 {
     text-align: center;
     margin: 5px;
 }
-
 canvas {
     border: 2px solid rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0.40);
@@ -54,7 +53,6 @@ canvas {
     margin-bottom: 10px;
     position: relative;
 }
-
 #muteSound,#start{
     -moz-box-shadow: inset 0px 1px 0px 0px #fff6af;
     -webkit-box-shadow: inset 0px 1px 0px 0px #fff6af;
@@ -86,7 +84,6 @@ canvas {
     margin-left: 120px;
     margin-bottom: 10px;
 }
-
 #muteSound:hover,#start:hover {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
     background: -moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
@@ -97,16 +94,13 @@ canvas {
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64', GradientType=0);
     background-color: #ffab23;
 }
-
 #muteSound:active {
     position: relative;
     top: 1px;
 }
-
 #side-container {
     padding-left: 300px;
 }
-
 #result, #level, #high-score, #game-over {
     -moz-box-shadow: inset 0px 1px 0px 0px #f9eca0;
     -webkit-box-shadow: inset 0px 1px 0px 0px #f9eca0;
