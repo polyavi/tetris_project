@@ -9,7 +9,7 @@ body {
 #tetris-container {
     width: 600px;
     height: 630px;
-    margin-left: 15%;
+    margin-left: 27%;
     background-color: rgba(255, 255, 255, 0.40);
     border: 2px solid rgb(255, 255, 255);
     border-radius: 5px;
