@@ -5,15 +5,11 @@
  $result = mysqli_query($connect, $sql);
  $output .= '
       <div class="table-responsive">
-           <table class="table-bordered">
-                <tr>
-                     <th width="40%">Name</th>
-                     <th width="40%">Score</th>
-
-                </tr>';
+           <table class="table-bordered">';
  if(mysqli_num_rows($result) > 0)
  {
-     while($row = mysqli_fetch_array($result))
+   for ($i=0; $i < 5; $i++) {
+     if($row = mysqli_fetch_array($result))
      {
          $output .= '
                 <tr>
@@ -22,6 +18,7 @@
                 </tr>
            ';
      }
+ }
  }
  else
  {

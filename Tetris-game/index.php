@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <link href="css/tetris_game.css" rel="stylesheet">
     <script src="js/tetris_game.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
 </head>
@@ -57,16 +56,15 @@
                 <div id="result">000</div>
                 <h2>LEVEL</h2>
                 <div id="level">1</div>
-            </div>
-            <div class="container">
-                <br />
-                <div class="">
-                    <h3 align="">HighScore table</h3><br />
-                    <div id="live_data"></div>
-                </div>
-            </div>
+                <div class="container">
+                  <div id="high-score">
+                  <h3 align="">HighScore table</h3>
+                  <div id="live_data"></div>
+                  </div>
+              </div>
         </div>
     </div>
+  </div>
     <!--<audio id="originalTheme" src="sounds/TetrisLowerVolume.mp3"></audio>-->
     <audio id="startSound" src="sounds/SFX_GameStart.ogg"></audio>
     <audio id="moveLeftRight" src="sounds/SFX_PieceMoveLR.ogg"></audio>

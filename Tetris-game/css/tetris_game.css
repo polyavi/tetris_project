@@ -9,7 +9,7 @@ body {
 #tetris-container {
     width: 600px;
     height: 630px;
-    margin-left: 27%;
+    margin-left: 15%;
     background-color: rgba(255, 255, 255, 0.40);
     border: 2px solid rgb(255, 255, 255);
     border-radius: 5px;
@@ -33,6 +33,7 @@ h1 {
 }
 h2 {
     text-align: center;
+    margin: 5px;
 }
 
 canvas {
@@ -50,7 +51,7 @@ canvas {
 }
 #next-canvas {
     margin-left: 35px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     position: relative;
 }
 
@@ -79,10 +80,10 @@ canvas {
     text-decoration: none;
     text-shadow: 0px 1px 0px #ffee66;
     margin-left: 95px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 #start{
-    margin-left: 65px;
+    margin-left: 120px;
     margin-bottom: 10px;
 }
 
@@ -106,7 +107,7 @@ canvas {
     padding-left: 300px;
 }
 
-#result, #level {
+#result, #level, #high-score, #game-over {
     -moz-box-shadow: inset 0px 1px 0px 0px #f9eca0;
     -webkit-box-shadow: inset 0px 1px 0px 0px #f9eca0;
     box-shadow: inset 0px 1px 0px 0px #f9eca0;
@@ -126,18 +127,33 @@ canvas {
     color: #666666;
     font-size: 15px;
     font-weight: bold;
-    padding: 20px 60px;
+    padding: 10px 30px;
     text-decoration: none;
     text-shadow: 0px 1px 0px #ffffff;
-    margin-left: 80px;
+    margin: 5px 0 5px 110px;
+
+}
+h3{
+  margin: 5px;
+  font-size: 15px;
+}
+#high-score{
+  margin-left: 65px;
+  padding: 10px;
+    width: 140px;
+    height: 140px;
+}
+.score,.name{
+  padding-left: 20px;
+  text-align: center;
 }
 #game-over{
-    width: 200px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     position: absolute;
     top: 200px;
-    left: 500px;
-    background-color: #666666;
+    left:270px;
+    background-color: #f0c911;
     z-index: 10;
     display: none;
     margin:0 auto;
@@ -145,4 +161,3 @@ canvas {
 #restart{
     display: none;
 }
-
