@@ -471,7 +471,7 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
                 }
             case 40:
                 { //down: interval - position block to bottom
-                    document.getElementById('hardDrop').play();
+                    document.getElementById('fallDown').play();
                     moveBlockDown();
                     break;
                 }
