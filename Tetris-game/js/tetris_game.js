@@ -582,6 +582,8 @@ function createGame(fieldSelector, blockSelector, tetrisNextSelector) {
 
                 if (lines % 5 == 0) {
                     level += 1;
+                    //sound for levelUp
+                    document.getElementById("levelUpSound").play();
                     updateGameFieldWithLine();
                 }
 
